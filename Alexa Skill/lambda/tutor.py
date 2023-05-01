@@ -2,7 +2,7 @@ import openai
 
 class tutor():
     # Indica el API Key
-    openai.api_key = "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"
+    openai.api_key = ""
     
     # Uso de ChapGPT en Python
     model_engine = "text-davinci-002"
