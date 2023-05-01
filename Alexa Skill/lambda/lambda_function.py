@@ -13,7 +13,9 @@ from ask_sdk_core.dispatch_components import AbstractExceptionHandler
 from ask_sdk_core.handler_input import HandlerInput
 
 from ask_sdk_model import Response
-import openai
+
+# Archivo con funciones predefinidas
+import tutor
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
@@ -48,20 +50,12 @@ class HelloWorldIntentHandler(AbstractRequestHandler):
         # type: (HandlerInput) -> Response
         
         
-        # Indica el API Key
-        openai.api_key = "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"
-        # Uso de ChapGPT en Python
-        model_engine = "text-davinci-002"
-        prompt = "Dime cosas sobre Malta"
-        completion = openai.Completion.create(engine=model_engine,
-                                      prompt=prompt,
-                                      max_tokens=1024,
-                                      n=1,
-                                      stop=None,
-                                      temperature=0.7)
+        pregunta = "Dime cosas sobre Malta"
+        respuesta = tutor.ask_gpt(pregunta)
         
-        for choice in completion.choices:
-            texto = choice.text
+        
+        for resp in respuesta:
+            texto = resp.text
         
         speak_output = texto
         
